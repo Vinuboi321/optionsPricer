@@ -5,7 +5,7 @@ def monte_carlo_option_price(S, K, T, r, sigma, option_type="call", num_simulati
     Simulate num_simulations possible stock price paths,
     compute average discounted payoff.
     """
-    np.random.seed(42)  
+    np.random.seed(42)
 
     Z = np.random.standard_normal(num_simulations)  # random shocks
     ST = S * np.exp((r - 0.5 * sigma**2) * T + sigma * np.sqrt(T) * Z)
@@ -18,10 +18,11 @@ def monte_carlo_option_price(S, K, T, r, sigma, option_type="call", num_simulati
     price = np.exp(-r * T) * np.mean(payoffs)
     return price
 
-S, K, T, r, sigma = 100, 100, 1, 0.05, 0.2
+if __name__ == "__main__":
+    S, K, T, r, sigma = 100, 100, 1, 0.05, 0.2
 
-mc_call = monte_carlo_option_price(S, K, T, r, sigma, "call")
-mc_put  = monte_carlo_option_price(S, K, T, r, sigma, "put")
+    mc_call = monte_carlo_option_price(S, K, T, r, sigma, "call")
+    mc_put  = monte_carlo_option_price(S, K, T, r, sigma, "put")
 
-print(f"Monte Carlo call price: {mc_call:.4f}  (Black-Scholes: 10.4506)")
-print(f"Monte Carlo put price:  {mc_put:.4f}  (Black-Scholes: 5.5735)")
+    print(f"Monte Carlo call price: {mc_call:.4f}  (Black-Scholes: 10.4506)")
+    print(f"Monte Carlo put price:  {mc_put:.4f}  (Black-Scholes: 5.5735)")

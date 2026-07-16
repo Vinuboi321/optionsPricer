@@ -45,15 +45,16 @@ def vega(S, K, T, r, sigma):
     d1 = (np.log(S / K) + (r + 0.5 * sigma**2) * T) / (sigma * np.sqrt(T))
     return S * norm.pdf(d1) * np.sqrt(T) * 0.01
 
-S, K, T, r, sigma = 100, 100, 1, 0.05, 0.2
+if __name__ == "__main__":
+    S, K, T, r, sigma = 100, 100, 1, 0.05, 0.2
 
-print(f"Delta (call): {delta(S, K, T, r, sigma, 'call'):.4f}")
-print(f"Delta (put):  {delta(S, K, T, r, sigma, 'put'):.4f}")
-print(f"Gamma:        {gamma(S, K, T, r, sigma):.4f}")
-print(f"Theta (call): {theta(S, K, T, r, sigma, 'call'):.4f}")
-print(f"Theta (put):  {theta(S, K, T, r, sigma, 'put'):.4f}")
-print(f"Vega:         {vega(S, K, T, r, sigma):.4f}")
+    print(f"Delta (call): {delta(S, K, T, r, sigma, 'call'):.4f}")
+    print(f"Delta (put):  {delta(S, K, T, r, sigma, 'put'):.4f}")
+    print(f"Gamma:        {gamma(S, K, T, r, sigma):.4f}")
+    print(f"Theta (call): {theta(S, K, T, r, sigma, 'call'):.4f}")
+    print(f"Theta (put):  {theta(S, K, T, r, sigma, 'put'):.4f}")
+    print(f"Vega:         {vega(S, K, T, r, sigma):.4f}")
 
-# Test 
-print(black_scholes(S=100, K=100, T=1, r=0.05, sigma=0.2, option_type="call"))
-print(black_scholes(S=100, K=100, T=1, r=0.05, sigma=0.2, option_type="put"))
+    # Test
+    print(black_scholes(S=100, K=100, T=1, r=0.05, sigma=0.2, option_type="call"))
+    print(black_scholes(S=100, K=100, T=1, r=0.05, sigma=0.2, option_type="put"))
